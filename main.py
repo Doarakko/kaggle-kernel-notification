@@ -45,4 +45,5 @@ def main():
         message = get_kernels_url(copetition_name)
         post_slack(message=message)
 
+
 main()
