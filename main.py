@@ -13,6 +13,8 @@ COMPETITIONS_LIST = ['elo-merchant-category-recommendation', 'vsb-power-line-fau
 
 def get_kernels_url(competition_name=None):
     api = KaggleApi()
+    api.CONFIG_NAME_USER = os.environ['KAGGLE_CONFIG_NAME_USER']
+    api.CONFIG_NAME_KEY = os.environ['KAGGLE_CONFIG_NAME_KEY']
     api.authenticate()
     kernels_list = api.kernels_list(competition=competition_name, sort_by='dateCreated')
 
