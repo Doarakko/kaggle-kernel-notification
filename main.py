@@ -4,18 +4,21 @@ import json
 from datetime import datetime
 from pytz import timezone
 from kaggle.api.kaggle_api_extended import KaggleApi
+from kaggle.api_client import ApiClient
 
 import config
 
 URL = os.environ['SLACK_WEBHOOK_URL']
 COMPETITIONS_LIST = ['elo-merchant-category-recommendation', 'vsb-power-line-fault-detection']
+KAGGLE_JSON = {
+    'username': os.environ['KAGGLE_CONFIG_NAME_USER'],
+    'key': os.environ['KAGGLE_CONFIG_NAME_KEY'],
+}
 
 
 def get_kernels_url(competition_name=None):
-    api = KaggleApi()
-    api.CONFIG_NAME_USER = os.environ['KAGGLE_CONFIG_NAME_USER']
-    api.CONFIG_NAME_KEY = os.environ['KAGGLE_CONFIG_NAME_KEY']
-    # api.authenticate()
+    api = KaggleApi(KAGGLE_JSON)
+    api.authenticate()
     kernels_list = api.kernels_list(competition=competition_name, sort_by='dateCreated')
 
     now = datetime.utcnow()
