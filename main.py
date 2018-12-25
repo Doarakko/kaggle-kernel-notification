@@ -5,6 +5,7 @@ from datetime import datetime
 from pytz import timezone
 from kaggle.api.kaggle_api_extended import KaggleApi
 
+# Remove comment out on local
 # import config
 
 URL = os.environ['SLACK_WEBHOOK_URL']
