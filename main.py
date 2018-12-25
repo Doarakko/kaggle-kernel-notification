@@ -5,7 +5,7 @@ from datetime import datetime
 from pytz import timezone
 from kaggle.api.kaggle_api_extended import KaggleApi
 
-import config
+# import config
 
 URL = os.environ['SLACK_WEBHOOK_URL']
 COMPETITIONS_LIST = ['elo-merchant-category-recommendation', 'vsb-power-line-fault-detection']
