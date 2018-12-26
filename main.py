@@ -18,7 +18,7 @@ def get_kernels_url(competition_name=None):
     kernels_list = api.kernels_list(competition=competition_name, sort_by='dateCreated')
 
     now = datetime.utcnow()
-    message = '{}\n'.format(competition_name)
+    message = ''
 
     for kernel_info in kernels_list:
         last_run_date = getattr(kernel_info, 'lastRunTime')
@@ -30,19 +30,26 @@ def get_kernels_url(competition_name=None):
     return message
 
 
-def post_slack(message='hoge'):
+def post_slack(competition_name='n', message='hoge'):
     payload = {
         'username': 'Kaggle Kernel Notification',
         'icon_url': 'https://pbs.twimg.com/profile_images/1146317507/twitter_400x400.png',
-        'text': message,
+        'attachments': [{
+                        'fallback': competition_name,
+                        'color': '#D00000',
+                        'fields': [{
+                            'title': competition_name,
+                            'value': message,
+                                    }]
+                        }]
     }
     requests.post(URL, data=json.dumps(payload))
 
 
 def main():
-    for copetition_name in COMPETITIONS_LIST:
-        message = get_kernels_url(copetition_name)
-        post_slack(message=message)
+    for competition_name in COMPETITIONS_LIST:
+        message = get_kernels_url(competition_name=competition_name)
+        post_slack(competition_name=competition_name, message=message)
 
 
 main()
