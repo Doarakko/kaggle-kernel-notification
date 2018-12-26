@@ -1,7 +1,7 @@
 import os
-import requests
-import json
 from datetime import datetime
+import json
+import requests
 from pytz import timezone
 from kaggle.api.kaggle_api_extended import KaggleApi
 
@@ -9,13 +9,15 @@ from kaggle.api.kaggle_api_extended import KaggleApi
 # import config
 
 URL = os.environ['SLACK_WEBHOOK_URL']
-COMPETITIONS_LIST = ['elo-merchant-category-recommendation', 'vsb-power-line-fault-detection']
+COMPETITIONS_LIST = ['elo-merchant-category-recommendation',
+                     'vsb-power-line-fault-detection']
 
 
 def get_kernels_url(competition_name):
     api = KaggleApi()
     api.authenticate()
-    kernels_list = api.kernels_list(competition=competition_name, sort_by='dateCreated')
+    kernels_list = api.kernels_list(
+        competition=competition_name, sort_by='dateCreated')
 
     now = datetime.utcnow()
     kernels_url = ''
@@ -25,7 +27,8 @@ def get_kernels_url(competition_name):
         last_run_date = timezone('UTC').localize(last_run_date)
 
         if last_run_date.date() == now.date():
-            kernels_url += 'https://www.kaggle.com/{}\n'.format(getattr(kernel_info, 'ref'))
+            kernels_url += 'https://www.kaggle.com/{}\n'.format(
+                getattr(kernel_info, 'ref'))
 
     return kernels_url
 
@@ -35,13 +38,13 @@ def post_slack(competition_name, kernels_url):
         'username': 'Kaggle Kernel Notification',
         'icon_url': 'https://pbs.twimg.com/profile_images/1146317507/twitter_400x400.png',
         'attachments': [{
-                        'fallback': competition_name,
-                        'color': '#D00000',
-                        'fields': [{
-                            'title': competition_name,
-                            'value': kernels_url,
-                                    }]
-                        }]
+            'fallback': competition_name,
+            'color': '#D00000',
+            'fields': [{
+                'title': competition_name,
+                'value': kernels_url,
+            }]
+        }]
     }
     requests.post(URL, data=json.dumps(payload))
 
