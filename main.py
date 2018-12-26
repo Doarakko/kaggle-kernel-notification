@@ -12,7 +12,7 @@ URL = os.environ['SLACK_WEBHOOK_URL']
 COMPETITIONS_LIST = ['elo-merchant-category-recommendation', 'vsb-power-line-fault-detection']
 
 
-def get_kernels_url(competition_name=None):
+def get_kernels_url(competition_name):
     api = KaggleApi()
     api.authenticate()
     kernels_list = api.kernels_list(competition=competition_name, sort_by='dateCreated')
@@ -30,7 +30,7 @@ def get_kernels_url(competition_name=None):
     return kernels_url
 
 
-def post_slack(competition_name=None, kernels_url=None):
+def post_slack(competition_name, kernels_url):
     payload = {
         'username': 'Kaggle Kernel Notification',
         'icon_url': 'https://pbs.twimg.com/profile_images/1146317507/twitter_400x400.png',
@@ -39,7 +39,7 @@ def post_slack(competition_name=None, kernels_url=None):
                         'color': '#D00000',
                         'fields': [{
                             'title': competition_name,
-                            'value': message,
+                            'value': kernels_url,
                                     }]
                         }]
     }
