@@ -51,7 +51,7 @@ def post_slack(title, value):
 def main():
     for competition_name in COMPETITIONS_LIST:
         kernels_url = get_kernels_url(competition_name=competition_name)
-        post_slack(competition_name=competition_name, kernels_url=kernels_url)
+        post_slack(title=competition_name, value=kernels_url)
 
 
 main()
