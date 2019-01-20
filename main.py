@@ -9,8 +9,7 @@ from kaggle.api.kaggle_api_extended import KaggleApi
 # import config
 
 URL = os.environ['SLACK_WEBHOOK_URL']
-COMPETITIONS_LIST = ['elo-merchant-category-recommendation',
-                     'vsb-power-line-fault-detection']
+COMPETITIONS_LIST = ['microsoft-malware-prediction']
 
 
 def get_kernels_url(competition_name):
@@ -33,16 +32,16 @@ def get_kernels_url(competition_name):
     return kernels_url
 
 
-def post_slack(competition_name, kernels_url):
+def post_slack(title, value):
     payload = {
         'username': 'Kaggle Kernel Notification',
         'icon_url': 'https://pbs.twimg.com/profile_images/1146317507/twitter_400x400.png',
         'attachments': [{
-            'fallback': competition_name,
+            'fallback': title,
             'color': '#D00000',
             'fields': [{
-                'title': competition_name,
-                'value': kernels_url,
+                'title': title,
+                'value': value,
             }]
         }]
     }

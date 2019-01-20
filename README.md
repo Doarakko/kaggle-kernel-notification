@@ -3,8 +3,6 @@
 Kaggle API と Heroku を使って、新規投稿された Kernel を Slack に投稿します。
 
 ## Requirement
-- git
-- Heroku CLI
 - anaconda3-5.2.0
     - Python 3.6.5
         - kaggle 1.5.0
@@ -12,11 +10,9 @@ Kaggle API と Heroku を使って、新規投稿された Kernel を Slack に�
 
 - Kaggle API
 - Slack
-- Heroku Account
-- Credit Card
 
 ## Usage
-### 1. Slack の Webhook URL を取得
+### 1. Get Slack Webhook URL
 #### 1.1 サイドバー下の App 横にある「+」を押します。  
 ![app.png](https://qiita-image-store.s3.amazonaws.com/0/245792/4dfd7e35-b26e-b23d-fd68-52512cfc9fbf.png)
 
