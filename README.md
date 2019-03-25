@@ -39,7 +39,7 @@ ga-customer-revenue-prediction                 2019-02-15 23:59:00  Featured    
 reducing-commercial-aviation-fatalities        2019-02-12 23:59:00  Playground            Swag         16           False
 ```
 
-#### 2.2 Setting kaggle competitons name
+#### 2.2 Setting kaggle competitons name in `main.py`
 ```
 COMPETITIONS_LIST = ['elo-merchant-category-recommendation', 'vsb-power-line-fault-detection']
 ```
@@ -73,12 +73,9 @@ Running python main.py on ⬢ <app name>... up, run.7384 (Free)
 $ heroku addons:create scheduler:standard
 ```
 
-#### 6.2 Setting task
+#### 6.2 Setting task on Heroku
 Set `FREQUENCY` with `Daily`.
 
 In the specification of the program, notify when the last execution date of Kernel is the same as the program execution date.
 
 Therefore, it does not make sense to `Hourly` or `Every 10 minutes`.
-
-## Hints
-- [「Kaggle API」を Python で実行してみた](https://doarakko.hatenablog.com/entry/kaggle_api_in_python) 
