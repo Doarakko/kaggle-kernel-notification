@@ -9,7 +9,7 @@ from kaggle.api.kaggle_api_extended import KaggleApi
 # import config
 
 URL = os.environ['SLACK_WEBHOOK_URL']
-COMPETITIONS_LIST = ['petfinder-adoption-prediction']
+COMPETITIONS_LIST = ['jigsaw-unintended-bias-in-toxicity-classification', 'santander-customer-transaction-prediction']
 
 
 def get_kernels_url(competition_name):
