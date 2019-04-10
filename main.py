@@ -5,12 +5,10 @@ import requests
 from pytz import timezone
 from kaggle.api.kaggle_api_extended import KaggleApi
 
-# Remove comment out on local
-# import config
-
-URL = os.environ['SLACK_WEBHOOK_URL']
-COMPETITIONS_LIST = ['jigsaw-unintended-bias-in-toxicity-classification',
-                     'santander-customer-transaction-prediction']
+# SLACK_WEBHOOK_URL = os.environ['SLACK_WEBHOOK_URL']
+# LINE_NOTIFY_TOKEN = os.environ['LINE_NOTIFY_TOKEN']
+# COMPETITIONS_LIST = os.environ['COMPETITIONS_LIST']
+POST = os.environ['POST']
 
 
 def get_kernels_url(competition_name):
@@ -46,13 +44,38 @@ def post_slack(title, value):
             }]
         }]
     }
-    requests.post(URL, data=json.dumps(payload))
+    try:
+        requests.post(SLACK_WEBHOOK_URL, data=json.dumps(payload))
+    except Exception as e:
+        print(e)
+
+
+def post_line(message):
+    headers = {
+        'Authorization': 'Bearer ' + ''
+        # 'Authorization': 'Bearer ' + LINE_NOTIFY_TOKEN
+    }
+    payload = {
+        'message': message
+    }
+    try:
+        requests.post('https://notify-api.line.me/api/notify',
+                      data=payload, headers=headers)
+    except Exception as e:
+        print(e)
 
 
 def main():
     for competition_name in COMPETITIONS_LIST:
         kernels_url = get_kernels_url(competition_name=competition_name)
-        post_slack(title=competition_name, value=kernels_url)
+
+        if POST == 'slack':
+            post_slack(title=competition_name, value=kernels_url)
+        elif POST == 'line':
+            # message = '\n{}\n{}'.format(competition_name, kernels_url)
+            message = '\n{}'.format(kernels_url)
+            post_line(message)
 
 
-main()
+# main()
+post_line('\ntest')
