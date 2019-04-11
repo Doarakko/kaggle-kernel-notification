@@ -8,5 +8,44 @@
         "kernel",
         "notification",
         "slack"
+    ],
+    "env": {
+        "SLACK_WEBHOOK_URL": {
+            "description": ""
+        },
+        "LINE_NOTIFY_TOKEN": {
+            "description": ""
+        },
+        "POST": {
+            "description": "slack or line",
+            "value": "slack"
+        },
+        "COMPETITIONS_LIST": {
+            "description": "slack or line",
+            "value": "['', '']"
+        },
+        "KAGGLE_KEY": {
+            "description": "kaggle key",
+            "value": "your key"
+        },
+        "KAGGLE_USERNAME": {
+            "description": "kaggle username",
+            "value": "your username"
+        }
+    },
+    "buildpacks": [
+        {
+            "url": "https://github.com/heroku/heroku-buildpack-python"
+        }
+    ],
+    "addons": [
+        "openredis",
+        {
+            "plan": "scheduler:scheduler-flat-10155",
+            "as": "SCHEDULER"
+        },
+        {
+            "plan": "standard"
+        }
     ]
 }
