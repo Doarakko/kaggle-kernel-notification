@@ -41,11 +41,8 @@
     "addons": [
         "scheduler",
         {
-            "plan": "scheduler:scheduler-flat-10155",
+            "plan": "standard",
             "as": "SCHEDULER"
-        },
-        {
-            "plan": "standard"
         }
     ]
 }
