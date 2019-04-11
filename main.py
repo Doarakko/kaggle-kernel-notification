@@ -5,10 +5,13 @@ import requests
 from pytz import timezone
 from kaggle.api.kaggle_api_extended import KaggleApi
 
-SLACK_WEBHOOK_URL = os.environ['SLACK_WEBHOOK_URL']
-LINE_NOTIFY_TOKEN = os.environ['LINE_NOTIFY_TOKEN']
-COMPETITIONS_LIST = os.environ['COMPETITIONS_LIST']
 POST = os.environ['POST']
+COMPETITIONS_LIST = os.environ['COMPETITIONS_LIST']
+
+if POST == 'slack':
+    SLACK_WEBHOOK_URL = os.environ['SLACK_WEBHOOK_URL']
+elif POST == 'line':
+    LINE_NOTIFY_TOKEN = os.environ['LINE_NOTIFY_TOKEN']
 
 
 def get_kernels_url(competition_name):
