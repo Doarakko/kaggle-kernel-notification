@@ -6,7 +6,7 @@ from pytz import timezone
 from kaggle.api.kaggle_api_extended import KaggleApi
 
 POST = os.environ['POST']
-COMPETITIONS_LIST = os.environ['COMPETITIONS_LIST']
+COMPETITION_NAME = os.environ['COMPETITION_NAME']
 
 if POST == 'slack':
     SLACK_WEBHOOK_URL = os.environ['SLACK_WEBHOOK_URL']
@@ -14,11 +14,11 @@ elif POST == 'line':
     LINE_NOTIFY_TOKEN = os.environ['LINE_NOTIFY_TOKEN']
 
 
-def get_kernels_url(competition_name):
+def get_kernels_url():
     api = KaggleApi()
     api.authenticate()
     kernels_list = api.kernels_list(
-        competition=competition_name, sort_by='dateCreated')
+        competition=COMPETITION_NAME, sort_by='dateCreated')
 
     now = datetime.utcnow()
     kernels_url = ''
@@ -34,7 +34,7 @@ def get_kernels_url(competition_name):
     return kernels_url
 
 
-def post_slack(title, value):
+def post_slack(title=COMPETITION_NAME, value):
     payload = {
         'username': 'Kaggle Kernel Notification',
         'icon_url': 'https://avatars0.githubusercontent.com/u/1336944',
@@ -60,6 +60,10 @@ def post_line(message):
     payload = {
         'message': message
     }
+
+    # message = '\n{}\n{}'.format(COMPETITION_NAME, message)
+    message = '\n{}'.format(message)
+
     try:
         requests.post('https://notify-api.line.me/api/notify',
                       data=payload, headers=headers)
@@ -68,15 +72,12 @@ def post_line(message):
 
 
 def main():
-    for competition_name in COMPETITIONS_LIST:
-        kernels_url = get_kernels_url(competition_name=competition_name)
+    kernels_url = get_kernels_url()
 
-        if POST == 'slack':
-            post_slack(title=competition_name, value=kernels_url)
-        elif POST == 'line':
-            # message = '\n{}\n{}'.format(competition_name, kernels_url)
-            message = '\n{}'.format(kernels_url)
-            post_line(message)
+    if POST == 'slack':
+        post_slack(value=kernels_url)
+    elif POST == 'line':
+        post_line(message)
 
 
 main()
