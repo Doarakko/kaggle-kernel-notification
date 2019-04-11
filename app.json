@@ -11,18 +11,20 @@
     ],
     "env": {
         "SLACK_WEBHOOK_URL": {
-            "description": ""
+            "description": "You only need to enter slack or line",
+            "value": "your webhook url"
         },
         "LINE_NOTIFY_TOKEN": {
-            "description": ""
+            "description": "You only need to enter slack or line",
+            "value": "your line notify token"
         },
         "POST": {
             "description": "slack or line",
             "value": "slack"
         },
         "COMPETITIONS_LIST": {
-            "description": "slack or line",
-            "value": "['', '']"
+            "description": "Get competition name using kaggle command. No problem with single or multiple",
+            "value": "['freesound-audio-tagging-2019', 'jigsaw-unintended-bias-in-toxicity-classification']"
         },
         "KAGGLE_KEY": {
             "description": "kaggle key",
