@@ -54,15 +54,15 @@ def post_slack(value, title=COMPETITION_NAME):
 
 
 def post_line(message):
+    # message = '\n{}\n{}'.format(COMPETITION_NAME, message)
+    message = '\n{}'.format(message)
+
     headers = {
         'Authorization': 'Bearer ' + LINE_NOTIFY_TOKEN
     }
     payload = {
         'message': message
     }
-
-    # message = '\n{}\n{}'.format(COMPETITION_NAME, message)
-    message = '\n{}'.format(message)
 
     try:
         requests.post('https://notify-api.line.me/api/notify',
