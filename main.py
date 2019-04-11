@@ -76,5 +76,4 @@ def main():
             post_line(message)
 
 
-# main()
-post_line('\ntest')
+main()
