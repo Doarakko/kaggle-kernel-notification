@@ -5,9 +5,9 @@ import requests
 from pytz import timezone
 from kaggle.api.kaggle_api_extended import KaggleApi
 
-# SLACK_WEBHOOK_URL = os.environ['SLACK_WEBHOOK_URL']
-# LINE_NOTIFY_TOKEN = os.environ['LINE_NOTIFY_TOKEN']
-# COMPETITIONS_LIST = os.environ['COMPETITIONS_LIST']
+SLACK_WEBHOOK_URL = os.environ['SLACK_WEBHOOK_URL']
+LINE_NOTIFY_TOKEN = os.environ['LINE_NOTIFY_TOKEN']
+COMPETITIONS_LIST = os.environ['COMPETITIONS_LIST']
 POST = os.environ['POST']
 
 
@@ -52,8 +52,7 @@ def post_slack(title, value):
 
 def post_line(message):
     headers = {
-        'Authorization': 'Bearer ' + ''
-        # 'Authorization': 'Bearer ' + LINE_NOTIFY_TOKEN
+        'Authorization': 'Bearer ' + LINE_NOTIFY_TOKEN
     }
     payload = {
         'message': message
