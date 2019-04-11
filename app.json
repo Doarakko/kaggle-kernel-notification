@@ -39,10 +39,6 @@
         }
     ],
     "addons": [
-        "scheduler",
-        {
-            "plan": "standard",
-            "as": "SCHEDULER"
-        }
+        "scheduler"
     ]
 }
