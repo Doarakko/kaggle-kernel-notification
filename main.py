@@ -34,7 +34,7 @@ def get_kernels_url():
     return kernels_url
 
 
-def post_slack(title=COMPETITION_NAME, value):
+def post_slack(value, title=COMPETITION_NAME):
     payload = {
         'username': 'Kaggle Kernel Notification',
         'icon_url': 'https://avatars0.githubusercontent.com/u/1336944',
@@ -77,7 +77,7 @@ def main():
     if POST == 'slack':
         post_slack(value=kernels_url)
     elif POST == 'line':
-        post_line(message)
+        post_line(message=kernels_url)
 
 
 main()
