@@ -24,7 +24,7 @@ def get_kernels_url():
 
     for kernel_info in kernels_list:
         last_run_date = getattr(kernel_info, 'lastRunTime')
-        # suppose to run once a day
+        # assume to run once a day
         pre_date = now - datetime.timedelta(days=1)
 
         if last_run_date >= pre_date:
