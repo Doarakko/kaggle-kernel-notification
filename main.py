@@ -1,8 +1,7 @@
 import os
-from datetime import datetime
+import datetime
 import json
 import requests
-from pytz import timezone
 from kaggle.api.kaggle_api_extended import KaggleApi
 
 POST = os.environ['POST']
@@ -18,16 +17,15 @@ def get_kernels_url():
     api = KaggleApi()
     api.authenticate()
     kernels_list = api.kernels_list(
-        competition=COMPETITION_NAME, sort_by='dateCreated')
+        competition=COMPETITION_NAME, page_size=40, sort_by='dateCreated')
 
-    now = datetime.utcnow()
+    now = datetime.datetime.utcnow()
     kernels_url = ''
 
     for kernel_info in kernels_list:
         last_run_date = getattr(kernel_info, 'lastRunTime')
-        last_run_date = timezone('UTC').localize(last_run_date)
-
-        if last_run_date.date() == now.date():
+        pre_date = now - datetime.timedelta(days=1)
+        if last_run_date >= pre:
             kernels_url += 'https://www.kaggle.com/{}\n'.format(
                 getattr(kernel_info, 'ref'))
 
