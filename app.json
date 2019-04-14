@@ -41,6 +41,6 @@
         }
     ],
     "addons": [
-        "scheduler"
+        "scheduler:standard"
     ]
 }
