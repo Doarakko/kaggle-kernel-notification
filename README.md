@@ -5,6 +5,8 @@
 
 Notify new posted kernel to Slack using Kaggle API and Heroku.
 
+Please be careful about [this issue](https://github.com/Doarakko/kaggle-kernel-notification/issues/1).
+
 ## Requirements
 - Kaggle API
 - Heroku
@@ -13,13 +15,31 @@ Notify new posted kernel to Slack using Kaggle API and Heroku.
 - [Slack](https://api.slack.com/incoming-webhooks) or [LINE](https://notify-bot.line.me)
 
 ## Usage
-### 1. Press button(`Deplo to Heroku`) and enter environment variables
+### 1. Press button(`Deploy to Heroku`) and enter environment variables
+You need to enter your credit card information to use [Heroku Scheduler](https://devcenter.heroku.com/articles/scheduler).  
+Standard plan is free, so please don't worry.
+
+![](img/enter-config-vars.png)
+
+
+
 ### 2. Set task on Heroku
+![](img/select-scheduler.png)
+
 Set `FREQUENCY` with `Daily`.
 
-In the specification of the program, notify when the last execution date of Kernel is the same as the program execution date.
+![](img/set-schedule.png)
 
-Therefore, it does not make sense to `Hourly` or `Every 10 minutes`.
+
+```
+ # assume to run once a day
+pre_date = now - datetime.timedelta(days=1)
+
+if last_run_date >= pre_date:
+```
+
+If you get at short intervals, the results will overlap.  
+In that case, please fork and correct the program.
 
 ## Contribution
 Welcome issue and pull request.
