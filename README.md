@@ -32,7 +32,7 @@ Set `FREQUENCY` with `Daily`.
 
 
 ```
- # assume to run once a day
+# assume to run once a day
 pre_date = now - datetime.timedelta(days=1)
 
 if last_run_date >= pre_date:
@@ -40,6 +40,15 @@ if last_run_date >= pre_date:
 
 If you get at short intervals, the results will overlap.  
 In that case, please fork and correct the program.
+
+## Sample
+- Slack
+
+![](img/slack-sample.png)
+
+- LINE
+
+![](img/line-sample.png)
 
 ## Contribution
 Welcome issue and pull request.
