@@ -21,7 +21,8 @@ Standard plan is free, so please don't worry.
 
 ![](img/enter-config-vars.png)
 
-
+Do not enter more than one in `COMPETITION_NAME`.  
+If you participate in some competitions, please deploy for the number of competitions.
 
 ### 2. Set task on Heroku
 ![](img/select-scheduler.png)
