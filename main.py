@@ -37,7 +37,7 @@ def get_kernels_url():
 def post_slack(value, title=COMPETITION_NAME):
     payload = {
         'username': 'Kaggle Kernel Notification',
-        'icon_url': 'https://avatars0.githubusercontent.com/u/1336944',
+        'icon_url': 'https://storage.googleapis.com/kaggle-avatars/images/2080166-kg.png',
         'attachments': [{
             'fallback': title,
             'color': '#D00000',
