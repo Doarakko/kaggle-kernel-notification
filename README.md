@@ -1,7 +1,7 @@
 # Kaggle Kernel Notification
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-Notify new posted kernel to Slack using Kaggle API and Heroku.
+Notify new posted kernel to Slack or LINE using Kaggle API and Heroku.
 
 Please be careful about [this issue](https://github.com/Doarakko/kaggle-kernel-notification/issues/1).
 
