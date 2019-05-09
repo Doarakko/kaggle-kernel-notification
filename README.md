@@ -1,6 +1,4 @@
 # Kaggle Kernel Notification
-[![CircleCI](https://circleci.com/gh/Doarakko/kaggle-kernel-notification.svg?style=svg)](https://circleci.com/gh/Doarakko/kaggle-kernel-notification)
-
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 Notify new posted kernel to Slack using Kaggle API and Heroku.
