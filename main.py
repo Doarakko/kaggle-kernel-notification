@@ -98,3 +98,5 @@ if __name__ == "__main__":
         post_slack(value=kernels_url)
     elif POST == 'line':
         post_line(message=kernels_url)
+    else:
+        logger.error('POST is invalid')
