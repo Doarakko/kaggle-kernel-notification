@@ -1,13 +1,14 @@
 {
     "name": "Kaggle Kernel Notification",
-    "description": "Notify new kaggle kernels to Slack",
+    "description": "Notify new kaggle kernels to Slack or LINE",
     "repository": "https://github.com/Doarakko/kaggle-kernel-notification",
     "logo": "https://avatars0.githubusercontent.com/u/1336944",
     "keywords": [
         "kaggle",
         "kernel",
         "notification",
-        "slack"
+        "slack",
+        "line"
     ],
     "env": {
         "SLACK_WEBHOOK_URL": {
