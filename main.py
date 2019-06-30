@@ -4,7 +4,8 @@ import datetime
 import requests
 from logging import StreamHandler, INFO, DEBUG, Formatter, FileHandler, getLogger
 
-from kaggle.api.kaggle_api_extended import KaggleApi
+# import dotenv
+from kaggle import KaggleApi
 
 POST = os.environ['POST']
 COMPETITION_NAME = os.environ['COMPETITION_NAME']
